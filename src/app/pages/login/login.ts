@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { UserData } from '../../providers/user-data';
+import { AuthService } from '../../auth/auth.service';
 
 import { UserOptions } from '../../interfaces/user-options';
 
@@ -18,6 +19,7 @@ export class LoginPage {
   submitted = false;
 
   constructor(
+    private authService: AuthService,
     public userData: UserData,
     public router: Router
   ) { }
@@ -27,6 +29,7 @@ export class LoginPage {
 
     if (form.valid) {
       this.userData.login(this.login.username);
+      this.authService.login();
       this.router.navigateByUrl('/app/tabs/schedule');
     }
   }

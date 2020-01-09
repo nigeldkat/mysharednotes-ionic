@@ -10,6 +10,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Storage } from '@ionic/storage';
 
 import { UserData } from './providers/user-data';
+import { AuthService } from '../app/auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -44,6 +45,7 @@ export class AppComponent implements OnInit {
   dark = false;
 
   constructor(
+    private authService: AuthService,
     private menu: MenuController,
     private platform: Platform,
     private router: Router,
@@ -113,7 +115,9 @@ export class AppComponent implements OnInit {
 
   logout() {
     this.userData.logout().then(() => {
-      return this.router.navigateByUrl('/app/tabs/schedule');
+      this.authService.logout();
+      return this.router.navigateByUrl('login');
+      //return this.router.navigateByUrl('/app/tabs/schedule');
     });
   }
 
