@@ -17,14 +17,14 @@
     <ion-list>
       <ion-item>
         <ion-label position="stacked" color="primary">Username</ion-label>
-        <ion-input [(ngModel)]="login.username" name="username" type="text" #username="ngModel" spellcheck="false" autocapitalize="off"
-          required>
+        <ion-input [(ngModel)]="login.username" name="username" type="email" #username="ngModel" spellcheck="false" autocapitalize="off"
+          required email>
         </ion-input>
       </ion-item>
 
       <ion-text color="danger">
         <p [hidden]="username.valid || submitted == false" class="ion-padding-start">
-          Username is required
+          Username is required or invalid email address
         </p>
       </ion-text>
 
@@ -39,6 +39,7 @@
           Password is required
         </p>
       </ion-text>
+      
     </ion-list>
 
     <ion-row>

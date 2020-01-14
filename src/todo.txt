@@ -1,0 +1,9 @@
+sign in related
+- better validation for email
+
+- reset pw
+- forgot pw
+
+- store more user data
+
+- spinner for loading

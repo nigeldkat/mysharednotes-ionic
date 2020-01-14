@@ -24,13 +24,14 @@ export class LoginPage {
     public router: Router
   ) { }
 
+
+
   onLogin(form: NgForm) {
+
     this.submitted = true;
 
     if (form.valid) {
-      this.userData.login(this.login.username);
-      this.authService.login();
-      this.router.navigateByUrl('/app/tabs/schedule');
+      this.authService.login(this.login.username, this.login.password);
     }
   }
 

@@ -12,6 +12,10 @@ import { Storage } from '@ionic/storage';
 import { UserData } from './providers/user-data';
 import { AuthService } from '../app/auth/auth.service';
 
+import * as firebase from 'firebase/app';
+
+import { environment } from '../../src/environments/environment';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -60,7 +64,8 @@ export class AppComponent implements OnInit {
   }
 
   async ngOnInit() {
-    this.checkLoginStatus();
+    //what do these do?
+    //this.checkLoginStatus();
     this.listenForLoginEvents();
 
     this.swUpdate.available.subscribe(async res => {
@@ -78,6 +83,8 @@ export class AppComponent implements OnInit {
         .then(() => this.swUpdate.activateUpdate())
         .then(() => window.location.reload());
     });
+    
+    this.authService.initAuthListener();
   }
 
   initializeApp() {
@@ -85,13 +92,14 @@ export class AppComponent implements OnInit {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+    firebase.initializeApp(environment.firebase);
   }
 
-  checkLoginStatus() {
-    return this.userData.isLoggedIn().then(loggedIn => {
-      return this.updateLoggedInStatus(loggedIn);
-    });
-  }
+  // checkLoginStatus() {
+  //   return this.userData.isLoggedIn().then(loggedIn => {
+  //     return this.updateLoggedInStatus(loggedIn);
+  //   });
+  // }
 
   updateLoggedInStatus(loggedIn: boolean) {
     setTimeout(() => {
