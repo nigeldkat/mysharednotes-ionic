@@ -1,9 +1,20 @@
 sign in related
 - better validation for email
 
-- reset pw
-- forgot pw
+- change pw
 
-- store more user data
 
 - spinner for loading
+
+**************************************************************
+DB Related 
+
+Configure security in db.  now in test mode
+https://firebase.google.com/docs/database/security/quickstart?authuser=0
+
+
+**************************************************************
+
+**************************************************************
+remove all recerences to ionic conference
+**************************************************************

@@ -1,13 +1,11 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component,  ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { UserData } from '../../providers/user-data';
 import { AuthService } from '../../auth/auth.service';
 
-import { UserOptions } from '../../interfaces/user-options';
-
-
+import { UserCredentials } from '../../interfaces/user-options';
 
 @Component({
   selector: 'page-login',
@@ -15,8 +13,9 @@ import { UserOptions } from '../../interfaces/user-options';
   styleUrls: ['./login.scss'],
 })
 export class LoginPage {
-  login: UserOptions = { username: '', password: '' };
+  login: UserCredentials = { username: '', password: '' };
   submitted = false;
+  @ViewChild('loginForm', { static: true }) loginForm: NgForm;
 
   constructor(
     private authService: AuthService,
@@ -24,12 +23,14 @@ export class LoginPage {
     public router: Router
   ) { }
 
-
+  ionViewWillEnter() {
+    this.login = {username: '', password: ''};
+    this.submitted = false;
+    this.loginForm.reset();
+  }
 
   onLogin(form: NgForm) {
-
     this.submitted = true;
-
     if (form.valid) {
       this.authService.login(this.login.username, this.login.password);
     }
@@ -37,5 +38,9 @@ export class LoginPage {
 
   onSignup() {
     this.router.navigateByUrl('/signup');
+  }
+
+  onResetPassword() {
+    this.router.navigateByUrl('/resetpassword');
   }
 }

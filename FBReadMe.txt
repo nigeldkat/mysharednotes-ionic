@@ -21,3 +21,5 @@ add in init or something like that
 
 ****************************************************************************
 
+Configure security in db.  now in test mode
+https://firebase.google.com/docs/database/security/quickstart?authuser=0

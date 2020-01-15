@@ -16,15 +16,15 @@
   <form #loginForm="ngForm" novalidate>
     <ion-list>
       <ion-item>
-        <ion-label position="stacked" color="primary">Username</ion-label>
-        <ion-input [(ngModel)]="login.username" name="username" type="email" #username="ngModel" spellcheck="false" autocapitalize="off"
-          required email>
+        <ion-label position="stacked" color="primary">Email Address</ion-label>
+        <ion-input [(ngModel)]="login.username" name="username" type="email" #username="ngModel" spellcheck="false"
+          autocapitalize="off" required email>
         </ion-input>
       </ion-item>
 
       <ion-text color="danger">
         <p [hidden]="username.valid || submitted == false" class="ion-padding-start">
-          Username is required or invalid email address
+          Invalid email address
         </p>
       </ion-text>
 
@@ -39,9 +39,10 @@
           Password is required
         </p>
       </ion-text>
-      
     </ion-list>
-
+    <ion-row class="resetPW">
+      <ion-col><a (click)="onResetPassword()">Reset Password</a></ion-col>
+    </ion-row>
     <ion-row>
       <ion-col>
         <ion-button (click)="onLogin(loginForm)" type="submit" expand="block">Login</ion-button>
@@ -51,5 +52,4 @@
       </ion-col>
     </ion-row>
   </form>
-
 </ion-content>

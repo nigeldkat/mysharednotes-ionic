@@ -28,6 +28,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/signup/signup.module').then(m => m.SignUpModule)
   },
   {
+    path: 'resetpassword',
+    loadChildren: () => import('./pages/reset-password/reset-password.module').then(m => m.ResetPasswordModule)
+  },
+  {
     path: 'app',
     loadChildren: () => import('./pages/tabs-page/tabs-page.module').then(m => m.TabsModule),
     canLoad: [AuthGuard]
