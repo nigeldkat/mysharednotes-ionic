@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TabsPage } from './tabs-page';
 import { SchedulePage } from './schedule/schedule';
+import { UserPage } from './user-page/user-page';
 
 
 const routes: Routes = [
@@ -21,6 +22,19 @@ const routes: Routes = [
             loadChildren: () => import('./session-detail/session-detail.module').then(m => m.SessionDetailModule)
           }
         ]
+      },
+      {
+        path: 'user-page',
+        children: [
+          {
+            path: '',
+            component: UserPage
+          },
+          {
+            path:'change-password',
+            loadChildren: () => import('./change-password/change-password.module').then(m => m.ChangePasswordPageModule)
+          }
+        ]        
       },
       {
         path: 'speakers',

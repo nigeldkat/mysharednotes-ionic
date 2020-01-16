@@ -37,11 +37,6 @@ const routes: Routes = [
     canLoad: [AuthGuard]
   },
   {
-    path: 'userinfo',
-    loadChildren: () => import('./pages/user-info/user-info.module').then(m => m.UserInfoModule),
-    canLoad: [AuthGuard]
-  },
-  {
     path: 'tutorial',
     loadChildren: () => import('./pages/tutorial/tutorial.module').then(m => m.TutorialModule),
     canLoad: [CheckTutorial]

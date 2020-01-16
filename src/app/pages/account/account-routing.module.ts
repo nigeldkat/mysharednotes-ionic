@@ -6,14 +6,7 @@ import { AccountPage } from './account';
 const routes: Routes = [
   {
     path: '',
-    component: AccountPage,
-    children: [
-      {
-        path: 'password',
-        loadChildren: () => import('./change-password/change-password.module').then(m => m.ChangePasswordModule)
-
-      }
-    ]
+    component: AccountPage    
   }
 ];
 
