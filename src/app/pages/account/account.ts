@@ -64,6 +64,7 @@ export class AccountPage implements AfterViewInit {
 
   changePassword() {
     console.log('Clicked to change password');
+    this.router.navigateByUrl('/account/password');
   }
 
   logout() {
@@ -72,6 +73,8 @@ export class AccountPage implements AfterViewInit {
   }
 
   support() {
-    this.router.navigateByUrl('/support');
+    this.router.navigateByUrl('/userinfo');
+    //this.router.navigateByUrl('/resetpassword');
+    //this.router.navigateByUrl('/support');
   }
 }
