@@ -3,4 +3,9 @@ import { Component } from '@angular/core';
 @Component({
   templateUrl: 'change-password.html'
 })
-export class ChangePasswordPage {}
+export class ChangePasswordPage {
+  defaultHref = '';
+
+  constructor() {}
+  
+}
