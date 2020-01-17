@@ -20,6 +20,12 @@ export class AuthService {
   private _userId = 'xyz';
   private _userInfo?: UserInfo;
 
+  //store use info in this.  not wired up yet
+  private _userProfile: firebase.firestore.DocumentReference;
+
+
+  private _currentUser: firebase.User;
+
   get userIsAuthenticated() {
     return this._userIsAuthenticated;
   }
@@ -30,18 +36,49 @@ export class AuthService {
 
   constructor(private toastCtrl: ToastController, private router: Router, private userData: UserData) { }
 
+  updatePassword(newPassword: string, oldPassword: string): Promise<any> {
+    const credential: firebase.auth.AuthCredential = firebase.auth.EmailAuthProvider.credential(
+      this._currentUser.email,
+      oldPassword
+    );  
+    return this._currentUser
+      .reauthenticateWithCredential(credential)
+      .then(() => {
+        this._currentUser.updatePassword(newPassword).then( async data => {
+          const toast = await this.toastCtrl.create({
+            message: 'Password Changed' ,
+            duration: 3000
+          });
+          await toast.present();
+        })
+      })
+      .catch(async error => {
+        const toast = await this.toastCtrl.create({
+          message: error,
+          duration: 3000
+        });
+        await toast.present();
+      });
+  }
 
   initAuthListener() {
     firebase.auth().onAuthStateChanged((user: firebase.User) => {
       if (user) {
+        //debugger;
         this._userIsAuthenticated = true;
         this.authChange.next(true);
         this.userData.login(user.uid);
+        this._currentUser = user;
+        //wire this up
+        //this._userProfile = firebase.firestore().doc(`/userProfile/${user.uid}`);
+        //.doc(`users/${user.uid}`);
+        //this._userProfile = firebase.firestore().doc(`users/${user.uid}`);
         this.router.navigateByUrl('/app/tabs/schedule');
       } else {
         this._userIsAuthenticated = false;
         this.router.navigate(['/login']);
         this.authChange.next(false);
+        this._currentUser = null;
       }
     });
   }
