@@ -39,6 +39,17 @@
         </p>
       </ion-text>
     </ion-list>
+    <ion-item>
+      <ion-label position="stacked" color="primary">Verify Password</ion-label>
+      <ion-input [(ngModel)]="signup.password2" name="password2" type="password" #password2="ngModel" 
+      pattern=".{8,30}" required (ionChange)="hideErrorMessage()"> 
+      </ion-input>
+    </ion-item>
+    <ion-text color="danger">
+      <p [hidden]="passwordsMatch" class="ion-padding-start">
+        New Passwords must match
+      </p>
+    </ion-text>
 
     <div class="ion-padding">
       <ion-button (click)="onSignup(signupForm)" type="submit" expand="block">Create</ion-button>

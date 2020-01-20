@@ -24,5 +24,10 @@ export class ChangePasswordPage {
       }      
     }    
   }
+
+  
+  hideErrorMessage() {
+    this.passwordsMatch = true;
+  }
   
 }
