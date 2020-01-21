@@ -21,7 +21,7 @@
                     </ion-input>
                 </ion-item>
                 <ion-text color="danger">
-                    <p [hidden]="(displayname.valid && displayname.touched) || submitted == false"
+                    <p [hidden]="displayname.valid || submitted == false"
                         class="ion-padding-start">
                         Display Name is required
                     </p>
