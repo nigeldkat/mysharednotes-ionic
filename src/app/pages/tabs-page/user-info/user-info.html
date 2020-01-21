@@ -1,0 +1,37 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button [defaultHref]="defaultHref"></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content padding>
+    <form #userInfoForm="ngForm" novalidate>
+        <ion-list>
+            <ion-row class="centerText">
+                <ion-col >          
+                  <h3>Update User Info</h3>
+                </ion-col>
+              </ion-row>
+            <ng-container *ngIf="pageLoaded">
+                <ion-item>
+                    <ion-label position="stacked" color="primary">Display Name</ion-label>
+                    <ion-input [(ngModel)]="userInfo.displayname" name="displayname" type="text" #displayname="ngModel"
+                        required>
+                    </ion-input>
+                </ion-item>
+                <ion-text color="danger">
+                    <p [hidden]="(displayname.valid && displayname.touched) || submitted == false"
+                        class="ion-padding-start">
+                        Display Name is required
+                    </p>
+                </ion-text>
+            </ng-container>
+        </ion-list>
+        <ion-row>
+            <ion-col>
+                <ion-button (click)="update(userInfoForm)" type="submit" expand="block">Save Changes</ion-button>
+            </ion-col>
+        </ion-row>
+    </form>
+</ion-content>

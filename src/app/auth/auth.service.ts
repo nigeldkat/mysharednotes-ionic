@@ -18,11 +18,10 @@ export class AuthService {
   authChange = new Subject<boolean>();
   private _userIsAuthenticated: boolean = false;
   private _userId = 'xyz';
-  private _userInfo?: UserInfo;
+ // private _userInfo?: UserInfo;
 
   //store use info in this.  not wired up yet
-  private _userProfile: firebase.firestore.DocumentReference;
-
+  //private _userProfile: firebase.firestore.DocumentReference;
 
   private _currentUser: firebase.User;
 
@@ -32,6 +31,10 @@ export class AuthService {
 
   get userId() {
     return this._userId;
+  }
+
+  get currentUser(): firebase.User {
+    return this._currentUser;
   }
 
   constructor(private toastCtrl: ToastController, private router: Router, private userData: UserData) { }
@@ -64,15 +67,10 @@ export class AuthService {
   initAuthListener() {
     firebase.auth().onAuthStateChanged((user: firebase.User) => {
       if (user) {
-        //debugger;
         this._userIsAuthenticated = true;
         this.authChange.next(true);
         this.userData.login(user.uid);
         this._currentUser = user;
-        //wire this up
-        //this._userProfile = firebase.firestore().doc(`/userProfile/${user.uid}`);
-        //.doc(`users/${user.uid}`);
-        //this._userProfile = firebase.firestore().doc(`users/${user.uid}`);
         this.router.navigateByUrl('/app/tabs/schedule');
       } else {
         this._userIsAuthenticated = false;
