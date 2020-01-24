@@ -43,6 +43,11 @@ export class AppComponent implements OnInit {
       title: 'About',
       url: '/app/tabs/about',
       icon: 'information-circle'
+    },
+    {
+      title: 'My Notes',
+      url: '/app/tabs/my-notes',
+      icon: 'information-circle'
     }
   ];
   loggedIn = false;

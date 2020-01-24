@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { TabsPage } from './tabs-page';
 import { SchedulePage } from './schedule/schedule';
 import { UserPage } from './user-page/user-page';
+import { MyNotesPage } from './my-notes/my-notes';
 
 
 const routes: Routes = [
@@ -39,6 +40,15 @@ const routes: Routes = [
             loadChildren: () => import('./user-info/user-info.module').then(m => m.UserInfoPageModule)
           }
         ]        
+      },
+      {
+        path: 'my-notes',
+        children: [
+          {
+            path: '',
+            component: MyNotesPage 
+          }
+        ]
       },
       {
         path: 'speakers',
