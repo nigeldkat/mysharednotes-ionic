@@ -47,6 +47,10 @@ const routes: Routes = [
           {
             path: '',
             component: MyNotesPage 
+          },
+          {
+            path:'my-notes-share/:noteId',
+            loadChildren: () => import('./my-notes-share/my-notes-share.module').then(m => m.MyNotesSharePageModule)
           }
         ]
       },

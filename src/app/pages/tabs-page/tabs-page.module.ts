@@ -14,6 +14,7 @@ import { SpeakerDetailModule } from './speaker-detail/speaker-detail.module';
 import { SpeakerListModule } from './speaker-list/speaker-list.module';
 import { UserPageModule } from './user-page/user-page.module';
 import { MyNotesPageModule } from './my-notes/my-notes.module';
+import { MyNotesSharePageModule } from './my-notes-share/my-notes-share.module';
 
 @NgModule({
   imports: [
@@ -23,6 +24,7 @@ import { MyNotesPageModule } from './my-notes/my-notes.module';
     IonicModule,
     MapModule,
     MyNotesPageModule,
+    MyNotesSharePageModule,
     ScheduleModule,
     SessionDetailModule,
     SpeakerDetailModule,
