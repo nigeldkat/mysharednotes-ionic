@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { ToastController } from '@ionic/angular';
 
 import { AuthService } from '../../../auth/auth.service';
+import { NoteList } from '../../../interfaces/notelist.model';
 
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
@@ -16,6 +17,28 @@ export class MyNotesService {
 
     constructor(private authService: AuthService, private toastCtrl: ToastController) {
 
+    }
+
+    addNewList(listName: string) {
+        const uid :string = this.authService.currentUser.uid;
+        let item: NoteList = {
+            Creator : uid,
+            Desc : listName,
+            ID : 'tempid',
+            Members : {[uid]: true}
+        } 
+
+        const listRef = firebase.firestore().collection(`Lists`);
+        listRef.add(item).then( data => {
+            const list = firebase.firestore().doc(`Lists/${data.id}`);
+            item.ID = data.id;
+            list.set(item, {merge: true});            
+        });   
+    }
+
+    deleteList(id: string) {
+        const list = firebase.firestore().doc(`Lists/${id}`);
+        list.delete();
     }
 
     getLists(): Observable<any> {
@@ -39,9 +62,12 @@ export class MyNotesService {
                     console.log(error);
                 });
                 observer.next(noteList);
+                noteList = [];
             });
         });
     }
+
+
 
 }
 

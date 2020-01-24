@@ -8,6 +8,49 @@
 </ion-header>
 <ion-content>
     <ion-row class="centerText">
-        <ion-col><h3>My Note List</h3></ion-col>
+        <ion-col>
+            <h3>My Note List</h3>
+        </ion-col>
+    </ion-row>
+    <ion-row *ngFor="let n of noteList" style="width:250px;">
+        <ion-col>
+
+            <div style="width:250px;">
+                <div style="padding-top: 10px; padding-left: 0px; width:120px; float:left">{{n.Desc}}</div>
+                <div><button (click)='onDelete(n.id)'>delete</button></div>
+                <div><button (click)='addMember(n.id)'>delete</button></div>
+            </div>
+            <!-- (click)='goToViewList(n.ID,n.Desc)' -->
+        </ion-col>
     </ion-row>
 </ion-content>
+<ion-content>
+    <form #addListForm="ngForm" novalidate>
+        <ion-row class="centerText">
+            <ion-col>
+                <h3>New List</h3>
+            </ion-col>
+        </ion-row>
+        <ion-list>
+            <ion-item>
+                <ion-label position="stacked" color="primary">List Name</ion-label>
+                <ion-input [(ngModel)]="newListName" name="newlist" type="text" #newlist="ngModel" spellcheck="false"
+                    autocapitalize="off" required >
+                </ion-input>
+            </ion-item>
+    
+            <ion-text color="danger">
+                <p [hidden]="newlist.valid || submitted == false" class="ion-padding-start">
+                    Required
+                </p>
+            </ion-text>
+        </ion-list>
+        <ion-row>
+            <ion-col>
+                <ion-button (click)="onCreateList(addListForm)" type="submit" expand="block">Create List</ion-button>
+            </ion-col>
+        </ion-row>
+    </form>
+</ion-content>
+
+
