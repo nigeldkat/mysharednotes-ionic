@@ -8,4 +8,31 @@
   
   <ion-content>
       <h3>Share Notes</h3>
+      <div *ngIf="listWithMembers" >
+        Members in {{listWithMembers.Desc}} List
+        <div *ngFor="let m of listWithMembers.Members" >
+          {{m.displayname}} - {{m.username}}
+        </div>
+      </div>
+      <form #addPersonForm="ngForm" novalidate>
+        <ion-list lines="none">
+          <ion-text>
+            <p>{{addMemberStatus}}</p>
+          </ion-text>
+          <ion-item>
+            <ion-label position="stacked" color="primary">Email Address</ion-label>
+            <ion-input [(ngModel)]="shareToEmail" name="useremail" type="email" 
+            #useremail="ngModel" required email>
+            </ion-input>
+          </ion-item>
+          <ion-text color="danger">
+            <p [hidden]="useremail.valid || submitted == false" class="ion-padding-start">
+              Must be a Valid Email Address
+            </p>
+          </ion-text>
+        </ion-list>
+        <div class="ion-padding">
+          <ion-button (click)="onAddPerson(addPersonForm)" type="submit" expand="block">Add Person To List</ion-button>
+        </div>
+      </form>
   </ion-content>
