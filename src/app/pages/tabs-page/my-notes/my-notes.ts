@@ -3,6 +3,7 @@ import { AuthService } from '../../../auth/auth.service';
 import { MyNotesService } from './my-notes.service';
 import { NoteList } from '../../../interfaces/notelist.model';
 import { NgForm } from '@angular/forms';
+import { AlertController } from '@ionic/angular';
 
 
 @Component({
@@ -16,7 +17,10 @@ export class MyNotesPage implements OnInit {
   public submitted = false;
   @ViewChild('addListForm', { static: true }) templateForm: NgForm;
 
-  constructor(private authService: AuthService, private myNoteService: MyNotesService) { }
+  constructor(
+    private alertController: AlertController, 
+    private authService: AuthService, 
+    private myNoteService: MyNotesService) { }
 
   ngOnInit(): void {
     this.myNoteService.getLists().subscribe((data) => {
@@ -33,8 +37,24 @@ export class MyNotesPage implements OnInit {
     }
   }
 
-  onDelete(id: string) {
-    this.myNoteService.deleteList(id);
+  async onDelete(id: string) {
+    const alert = await this.alertController.create({
+      header: 'Delete',
+      message: 'Are you sure?',
+      buttons: [{
+        text: 'Cancel',
+        role: 'cancel',
+        cssClass: 'secondary',
+        handler: () => {}
+      }, {
+        text: 'Ok',
+        handler: () => {
+          this.myNoteService.deleteList(id);
+        }
+      }] 
+    });
+
+    await alert.present();    
   }
 
 }

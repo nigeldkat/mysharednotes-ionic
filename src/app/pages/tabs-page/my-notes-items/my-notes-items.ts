@@ -23,7 +23,6 @@ export class MyNotesItemsPage {
     constructor(private route: ActivatedRoute, private itemService: MyNotesItemsService) { }
 
     ionViewWillEnter() {
-        debugger;
         this.listId = this.route.snapshot.paramMap.get('noteId');
         this.noteDesc = this.route.snapshot.paramMap.get('noteDesc');
         this.itemService.getList(this.listId).subscribe(
