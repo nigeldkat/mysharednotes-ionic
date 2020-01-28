@@ -37,7 +37,6 @@ export class MyNotesShareService {
                 }                
                 
             }, (error) =>{
-                debugger;
                 var y = error;
                 observer.next('failed');
             });
