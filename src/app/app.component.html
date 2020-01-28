@@ -11,7 +11,7 @@
       <ion-content>
         <ion-list lines="none" *ngIf="loggedIn">
           <ion-list-header>
-            Some Other Name
+            My Notes
           </ion-list-header>
           <ion-menu-toggle autoHide="false" *ngFor="let p of appPages; let i = index">
             <ion-item [routerLink]="p.url" routerLinkActive="active" routerDirection="root" detail="false">

@@ -71,7 +71,7 @@ export class AuthService {
         this.authChange.next(true);
         this.userData.login(user.uid);
         this._currentUser = user;
-        this.router.navigateByUrl('/app/tabs/schedule');
+        this.router.navigateByUrl('/app/tabs/my-notes');
       } else {
         this._userIsAuthenticated = false;
         this.router.navigate(['/login']);
@@ -82,7 +82,6 @@ export class AuthService {
   }
 
   login(email: string, password: string) {
-    //'squeakerdkat@hotmail.com', 'asdfasdf'
     firebase.auth()
       .signInWithEmailAndPassword(email, password)
       .then(result => {

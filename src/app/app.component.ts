@@ -25,28 +25,13 @@ import { environment } from '../../src/environments/environment';
 export class AppComponent implements OnInit {
   appPages = [
     {
-      title: 'Schedule',
-      url: '/app/tabs/schedule',
-      icon: 'calendar'
-    },
-    {
-      title: 'Speakers',
-      url: '/app/tabs/speakers',
-      icon: 'contacts'
-    },
-    {
-      title: 'Map',
-      url: '/app/tabs/map',
-      icon: 'map'
+      title: 'My Notes',
+      url: '/app/tabs/my-notes',
+      icon: 'information-circle'
     },
     {
       title: 'About',
       url: '/app/tabs/about',
-      icon: 'information-circle'
-    },
-    {
-      title: 'My Notes',
-      url: '/app/tabs/my-notes',
       icon: 'information-circle'
     }
   ];
