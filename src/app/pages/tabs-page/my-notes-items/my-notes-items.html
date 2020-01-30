@@ -3,23 +3,23 @@
       <ion-buttons slot="start">
         <ion-back-button [defaultHref]="defaultHref"></ion-back-button>
       </ion-buttons>
+      <ion-title>Do I want a title here?</ion-title>
     </ion-toolbar>
-  </ion-header>
-  
+  </ion-header>  
   <ion-content>
     <ion-row class="centerText">
         <ion-col>
             <h3>{{noteDesc}}</h3>
         </ion-col>
     </ion-row>
-    <ion-row *ngFor="let i of items" style="width:250px;">
-        <ion-col>
-            <div style="width:250px;">
-                <div style="padding-top: 10px; padding-left: 0px; width:120px; float:left">{{i.Desc}}</div>
-                <div><button (click)='onDelete(i.ID)'>delete</button></div>
-            </div>
-        </ion-col>
-    </ion-row>
+    <ion-list *ngFor="let i of items">
+        <ion-item>
+            <ion-label>
+                {{i.Desc}}
+            </ion-label>
+            <button ion-button outline item-end (click)="onDelete(i.ID)">Delete</button>
+        </ion-item>
+    </ion-list>
 </ion-content>
 <ion-content>
     <form #addItemsForm="ngForm" novalidate>
