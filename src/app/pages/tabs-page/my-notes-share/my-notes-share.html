@@ -3,18 +3,36 @@
       <ion-buttons slot="start">
         <ion-back-button [defaultHref]="defaultHref"></ion-back-button>
       </ion-buttons>
+      <ion-title>Share My Notes</ion-title>
     </ion-toolbar>
   </ion-header>
   
   <ion-content>
-      <h3>Share Notes</h3>
-      <div *ngIf="listWithMembers" >
-        Members in {{listWithMembers.Desc}} List
-        <div *ngFor="let m of listWithMembers.Members" >
-          {{m.displayname}} - {{m.username}}
-        </div>
-      </div>
+    <ion-row class="centerText">
+      <ion-col >
+          <h3>Members in {{listWithMembers?.Desc}}</h3>
+      </ion-col>
+  </ion-row>
+      <ion-list  *ngFor="let m of listWithMembers?.Members" >
+        <ion-item>
+            <ion-label >
+              {{m.displayname}} - {{m.username}}
+            </ion-label>            
+        </ion-item>        
+    </ion-list>
+
+
+
+
+
+
+
       <form #addPersonForm="ngForm" novalidate>
+        <ion-row class="centerText">
+          <ion-col >
+              <h3>Add new member to list</h3>
+          </ion-col>
+      </ion-row>
         <ion-list lines="none">
           <ion-text>
             <p>{{addMemberStatus}}</p>

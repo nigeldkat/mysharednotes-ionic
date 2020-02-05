@@ -3,13 +3,13 @@
       <ion-buttons slot="start">
         <ion-back-button [defaultHref]="defaultHref"></ion-back-button>
       </ion-buttons>
-      <ion-title>Do I want a title here?</ion-title>
+      <ion-title>{{noteDesc}}</ion-title>
     </ion-toolbar>
   </ion-header>  
   <ion-content>
     <ion-row class="centerText">
         <ion-col>
-            <h3>{{noteDesc}}</h3>
+            <h3>List Items</h3>
         </ion-col>
     </ion-row>
     <ion-list *ngFor="let i of items">
@@ -17,7 +17,7 @@
             <ion-label>
                 {{i.Desc}}
             </ion-label>
-            <button ion-button outline item-end (click)="onDelete(i.ID)">Delete</button>
+            <ion-icon name="trash" (click)="onDelete(i.ID)"></ion-icon>
         </ion-item>
     </ion-list>
 </ion-content>

@@ -17,8 +17,10 @@
             <ion-label title="Click To See Items"  routerLink="/app/tabs/my-notes/my-notes-items/{{n.id}}/{{n.Desc}}">
                 {{n.Desc}}
             </ion-label>
-            <button ion-button outline item-end (click)="onDelete(n.id)">Delete</button>
-            <button ion-button outline item-end routerLink="/app/tabs/my-notes/my-notes-share/{{n.id}}">Share</button>
+            <ion-icon name="list" routerLink="/app/tabs/my-notes/my-notes-items/{{n.id}}/{{n.Desc}}"></ion-icon>
+            <ion-icon title="Delete" name="trash" (click)="onDelete(n.id)"></ion-icon>
+            <ion-icon title="Share" name="share" routerLink="/app/tabs/my-notes/my-notes-share/{{n.id}}"></ion-icon>
+           
 
         </ion-item>
         

@@ -24,6 +24,7 @@ export class MyNotesService {
         let item: NoteList = {
             Creator : uid,
             Desc : listName,
+            SortDesc: listName.toLowerCase(),
             ID : 'tempid',
             Members : {[uid]: true}
         } 
@@ -55,20 +56,18 @@ export class MyNotesService {
                             id: doc.id,
                             ID: doc.data().ID,
                             Desc: doc.data().Desc,
+                            SortDesc: doc.data().SortDesc,
                             Creator: doc.data().Creator
                         }
                     );
                 }, (error) => {
                     console.log(error);
                 });
-                observer.next(noteList);
+                observer.next(noteList.sort( (a,b) => a.SortDesc.localeCompare(b.SortDesc)));
                 noteList = [];
             });
         });
     }
-
-
-
 }
 
 

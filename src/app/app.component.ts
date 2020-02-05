@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
     {
       title: 'My Notes',
       url: '/app/tabs/my-notes',
-      icon: 'information-circle'
+      icon: 'copy'
     },
     {
       title: 'About',

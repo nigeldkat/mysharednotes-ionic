@@ -24,7 +24,8 @@ export class MyNotesPage implements OnInit {
 
   ngOnInit(): void {
     this.myNoteService.getLists().subscribe((data) => {
-      this.noteList = data;
+      //debugger;
+      this.noteList = data; //.sort( (a,b) => a.SortDesc.localeCompare(b.SortDesc));
     });
   }
 
