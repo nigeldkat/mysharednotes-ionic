@@ -1,0 +1,15 @@
+--for android native deploy and dev
+
+
+after build now run
+ionic cap copy
+
+or 
+ionic cap sync 
+if you updated native code (new plugin)
+
+
+--for PWA deploy
+
+ng add @angular/pwa
+
