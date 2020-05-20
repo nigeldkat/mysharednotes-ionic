@@ -23,3 +23,13 @@ add in init or something like that
 
 Configure security in db.  now in test mode
 https://firebase.google.com/docs/database/security/quickstart?authuser=0
+
+
+*********************************************************************
+Deploy PWA Notes 
+
+npm install -g firebase-tools 
+
+run ionic build --prod 
+
+********************************************************************

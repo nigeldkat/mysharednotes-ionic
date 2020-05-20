@@ -1,8 +1,9 @@
 {
-  "name": "Ionic Conference",
-  "short_name": "Ionic Conference",
+  "name": "My Shared Note Lists II",
+  "short_name": "My Shared NotesII",
   "start_url": "index.html",
   "display": "standalone",
+  "orientation": "portrait",
   "icons": [
     {
       "src": "assets/img/appicon.png",

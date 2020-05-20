@@ -13,3 +13,6 @@ if you updated native code (new plugin)
 
 ng add @angular/pwa
 
+update manifest.json
+
+
