@@ -17,8 +17,10 @@ export class MyNotesItemsPage {
     noteDesc = '';
     @ViewChild('addItemsForm', { static: true }) addItemsForm: NgForm;
     submitted = false;
+    showAdd = false;
     items: Array<[Item]> = [];
     private listId: string;
+
 
     constructor(private route: ActivatedRoute, private itemService: MyNotesItemsService) { }
 
@@ -32,6 +34,9 @@ export class MyNotesItemsPage {
             (error) => '');
     }
 
+    toggleShowAdd(){
+        this.showAdd = !this.showAdd;
+    }
     onCreateItem(addItemsForm: NgForm): void {
         this.submitted = true;
         if (addItemsForm.valid) {
