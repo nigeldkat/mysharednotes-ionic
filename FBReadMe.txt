@@ -32,4 +32,6 @@ npm install -g firebase-tools
 
 run ionic build --prod 
 
+run firebase deploy
+
 ********************************************************************

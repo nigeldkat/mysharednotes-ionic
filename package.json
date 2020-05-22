@@ -1,8 +1,8 @@
 {
-  "name": "ionic-conference-app",
+  "name": "my-notes-ii",
   "version": "0.0.0",
-  "description": "Ionic Conference App",
-  "author": "Ionic Team <hi@ionicframework.com>",
+  "description": "My Notes II",
+  "author": "nigeldkat <nigeldkat@hotmail.com>",
   "license": "Apache-2.0",
   "scripts": {
     "ng": "ng",
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ionic-team/ionic-conference-app.git"
+    "url": "https://github.com/nigeldkat/mysharednotes-ionic"
   },
   "private": true,
   "dependencies": {
