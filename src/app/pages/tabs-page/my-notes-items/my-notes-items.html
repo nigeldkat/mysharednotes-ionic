@@ -7,23 +7,13 @@
     </ion-toolbar>
 </ion-header>
 <ion-content>
-    <!-- <ion-row class="centerText">
-        <ion-col>
-            <h3>List Items</h3>
-        </ion-col>
-    </ion-row> -->
     <ion-card>
         <ion-card-header class="centerText">
             <h3>List Items</h3>
         </ion-card-header>
         <ion-card-content>
             <ion-list *ngFor="let i of items">
-                <ion-item>
-                    <ion-label>
-                        {{i.Desc}}
-                    </ion-label>
-                    <ion-icon name="trash" (click)="onDelete(i.ID)"></ion-icon>
-                </ion-item>
+                <my-notes-item [id]=i.ID [desc]=i.Desc [listId]=listId></my-notes-item>                
             </ion-list>
         </ion-card-content>
     </ion-card>
@@ -33,63 +23,15 @@
 <ion-card>
     <ion-card-header class="centerText" (click)='toggleShowAdd()'>
         <ng-container  *ngIf=!showAdd>
-            Add New Item
+            Show Add New Item
         </ng-container>
         <ng-container  *ngIf=showAdd>
-            Hide Add
+            Hide Add New Item
         </ng-container> 
 
     </ion-card-header>
     <ion-card-content *ngIf=showAdd>
-        <form #addItemsForm="ngForm" novalidate>
-            <ion-list>
-                <ion-item>
-                    <ion-label position="stacked" color="primary">Item</ion-label>
-                    <ion-input [(ngModel)]="newListItem" name="newItem" type="text" #newItem="ngModel"
-                        spellcheck="false" autocapitalize="off" required>
-                    </ion-input>
-                </ion-item>
-
-                <ion-text color="danger">
-                    <p [hidden]="newItem.valid || submitted == false" class="ion-padding-start">
-                        Required
-                    </p>
-                </ion-text>
-            </ion-list>
-            <ion-row>
-                <ion-col>
-                    <ion-button (click)="onCreateItem(addItemsForm)" type="submit" expand="block">Add Item</ion-button>
-                </ion-col>
-            </ion-row>
-        </form>
+        <my-notes-add-item [id]='' [desc]='' [listId]=listId></my-notes-add-item>
     </ion-card-content>
 </ion-card>
 
-
-<!-- <ion-row class="centerText">
-    <ion-col (click)='toggleShowAdd()'>
-        <h3>Add New Item!</h3>
-    </ion-col>
-</ion-row>
-<form #addItemsForm="ngForm" novalidate *ngIf=showAdd>
-
-    <ion-list>
-        <ion-item>
-            <ion-label position="stacked" color="primary">Item</ion-label>
-            <ion-input [(ngModel)]="newListItem" name="newItem" type="text" #newItem="ngModel" spellcheck="false"
-                autocapitalize="off" required>
-            </ion-input>
-        </ion-item>
-
-        <ion-text color="danger">
-            <p [hidden]="newItem.valid || submitted == false" class="ion-padding-start">
-                Required
-            </p>
-        </ion-text>
-    </ion-list>
-    <ion-row>
-        <ion-col>
-            <ion-button (click)="onCreateItem(addItemsForm)" type="submit" expand="block">Add Item</ion-button>
-        </ion-col>
-    </ion-row>
-</form> -->

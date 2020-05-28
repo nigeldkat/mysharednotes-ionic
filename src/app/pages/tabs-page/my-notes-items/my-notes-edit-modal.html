@@ -1,0 +1,11 @@
+<ion-header translucent>
+    <ion-toolbar>
+      <ion-title>Edit Item</ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="dismissModal()">Close</ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content fullscreen>
+    <my-notes-add-item [id]=id [desc]=desc [listId]=listId ></my-notes-add-item>
+  </ion-content>

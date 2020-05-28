@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { ToastController } from '@ionic/angular';
 
 import { AuthService } from '../../../auth/auth.service';
@@ -14,6 +14,8 @@ import 'firebase/firestore';
 })
 export class MyNotesItemsService {
 
+    exitEditModal = new Subject<boolean>();
+
     constructor(private authService: AuthService, private toastCtrl: ToastController) { }
 
     addListItem(listId: string, item: string) {
@@ -24,7 +26,14 @@ export class MyNotesItemsService {
         list.add(newItem)
     }
 
-    deleteListItem(listId: string, itemId: string){
+    editListItem(listId: string, itemId: string, editedItem: string) {
+        const item = firebase.firestore().doc(`Lists/${listId}/Items/${itemId}`).update(
+            { Desc: editedItem, SortDesc: editedItem.toLowerCase() }
+        );
+        this.exitEditModal.next(true);
+    }
+
+    deleteListItem(listId: string, itemId: string) {
         const item = firebase.firestore().doc(`Lists/${listId}/Items/${itemId}`);
         item.delete();
     }
@@ -34,17 +43,19 @@ export class MyNotesItemsService {
             let itemList: Array<Item> = []
 
             const list = firebase.firestore().collection(`Lists/${id}/Items`)
-            .orderBy('SortDesc');
+                .orderBy('SortDesc');
 
             list.onSnapshot((snap) => {
                 itemList = [];
-                snap.forEach((doc) => {      
+                snap.forEach((doc) => {
                     itemList.push(
-                        {ID: doc.id,
-                         Desc: doc.data().Desc});
+                        {
+                            ID: doc.id,
+                            Desc: doc.data().Desc
+                        });
                 });
                 observer.next(itemList);
-            }, (error) =>{
+            }, (error) => {
                 //do something about error
             });
 
