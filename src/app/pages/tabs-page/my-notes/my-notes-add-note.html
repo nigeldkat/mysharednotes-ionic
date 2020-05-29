@@ -1,0 +1,20 @@
+<form #addListForm="ngForm" novalidate>
+    <ion-list>
+        <ion-item>
+            <ion-label position="stacked" color="primary">List Name</ion-label>
+            <ion-input [(ngModel)]="newListName" name="newlist" type="text" #newlist="ngModel" spellcheck="false"
+                autocapitalize="off" required >
+            </ion-input>
+        </ion-item>    
+        <ion-text color="danger">
+            <p [hidden]="newlist.valid || submitted == false" class="ion-padding-start">
+                Required
+            </p>
+        </ion-text>
+    </ion-list>
+    <ion-row>
+        <ion-col>
+            <ion-button (click)="onSaveList(addListForm)" type="submit" expand="block">{{btnLabel}}</ion-button>
+        </ion-col>
+    </ion-row>
+</form>

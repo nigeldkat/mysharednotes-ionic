@@ -1,0 +1,9 @@
+<ion-item>
+    <ion-label class="ion-text-wrap" title="Click To See Items"  routerLink="/app/tabs/my-notes/my-notes-items/{{id}}/{{desc}}">
+        {{desc}}
+    </ion-label>
+    <ion-icon name="list" routerLink="/app/tabs/my-notes/my-notes-items/{{id}}/{{desc}}"></ion-icon>    
+    <ion-icon name="create" (click)="onEdit(id, desc)"></ion-icon>
+    <ion-icon title="Delete" name="trash" (click)="onDelete(id)"></ion-icon>
+    <ion-icon title="Share" name="share" routerLink="/app/tabs/my-notes/my-notes-share/{{id}}"></ion-icon> 
+</ion-item>

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { ToastController } from '@ionic/angular';
 
 import { AuthService } from '../../../auth/auth.service';
@@ -14,10 +14,9 @@ import 'firebase/firestore';
 })
 export class MyNotesService {
 
+    exitNoteEditModal = new Subject<boolean>();
 
-    constructor(private authService: AuthService, private toastCtrl: ToastController) {
-
-    }
+    constructor(private authService: AuthService, private toastCtrl: ToastController) {}
 
     addNewList(listName: string) {
         const uid :string = this.authService.currentUser.uid;
@@ -40,6 +39,15 @@ export class MyNotesService {
     deleteList(id: string) {
         const list = firebase.firestore().doc(`Lists/${id}`);
         list.delete();
+    }
+
+    editNoteItem(id: string, listName: string){
+        firebase.firestore().doc(`Lists/${id}`).update({
+            Desc : listName,
+            SortDesc: listName.toLowerCase(),
+        });
+
+        this.exitNoteEditModal.next(true);
     }
 
     getLists(): Observable<any> {

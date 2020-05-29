@@ -13,46 +13,23 @@
         </ion-col>
     </ion-row>
     <ion-list  *ngFor="let n of noteList" >
-        <ion-item>
-            <ion-label title="Click To See Items"  routerLink="/app/tabs/my-notes/my-notes-items/{{n.id}}/{{n.Desc}}">
-                {{n.Desc}}
-            </ion-label>
-            <ion-icon name="list" routerLink="/app/tabs/my-notes/my-notes-items/{{n.id}}/{{n.Desc}}"></ion-icon>
-            <ion-icon title="Delete" name="trash" (click)="onDelete(n.id)"></ion-icon>
-            <ion-icon title="Share" name="share" routerLink="/app/tabs/my-notes/my-notes-share/{{n.id}}"></ion-icon>
-           
+        <my-notes-note [id]=n.id [desc]=n.Desc></my-notes-note>        
+    </ion-list>    
+</ion-content>
+<ion-card>
+    <ion-card-header class="centerText" (click)='toggleShowAdd()'>
+        <ng-container  *ngIf=!showAdd>
+            Show Add New List
+        </ng-container>
+        <ng-container  *ngIf=showAdd>
+            Hide Add New List
+        </ng-container> 
+    </ion-card-header>
+    <ion-card-content *ngIf=showAdd>
+        <my-notes-add-note [id]='' [desc]=''></my-notes-add-note>
+    </ion-card-content>
+</ion-card>
 
-        </ion-item>
-        
-    </ion-list>
-    
-</ion-content>
-<ion-content>
-    <form #addListForm="ngForm" novalidate>
-        <ion-row class="centerText">
-            <ion-col>
-                <h3>New List</h3>
-            </ion-col>
-        </ion-row>
-        <ion-list>
-            <ion-item>
-                <ion-label position="stacked" color="primary">List Name</ion-label>
-                <ion-input [(ngModel)]="newListName" name="newlist" type="text" #newlist="ngModel" spellcheck="false"
-                    autocapitalize="off" required >
-                </ion-input>
-            </ion-item>    
-            <ion-text color="danger">
-                <p [hidden]="newlist.valid || submitted == false" class="ion-padding-start">
-                    Required
-                </p>
-            </ion-text>
-        </ion-list>
-        <ion-row>
-            <ion-col>
-                <ion-button (click)="onCreateList(addListForm)" type="submit" expand="block">Create List</ion-button>
-            </ion-col>
-        </ion-row>
-    </form>
-</ion-content>
+
 
 

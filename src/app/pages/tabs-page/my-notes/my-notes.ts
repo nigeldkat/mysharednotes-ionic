@@ -1,9 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { AuthService } from '../../../auth/auth.service';
+import { Component, OnInit } from '@angular/core';
 import { MyNotesService } from './my-notes.service';
 import { NoteList } from '../../../interfaces/notelist.model';
-import { NgForm } from '@angular/forms';
-import { AlertController } from '@ionic/angular';
 
 
 @Component({
@@ -15,47 +12,18 @@ export class MyNotesPage implements OnInit {
   public newListName = '';
   public noteList: NoteList[] = [];
   public submitted = false;
-  @ViewChild('addListForm', { static: true }) templateForm: NgForm;
+  public showAdd = false;
 
-  constructor(
-    private alertController: AlertController, 
-    private authService: AuthService, 
-    private myNoteService: MyNotesService) { }
+  constructor(private myNoteService: MyNotesService) { }
 
   ngOnInit(): void {
     this.myNoteService.getLists().subscribe((data) => {
-      //debugger;
-      this.noteList = data; //.sort( (a,b) => a.SortDesc.localeCompare(b.SortDesc));
+      this.noteList = data; 
     });
   }
 
-  onCreateList(f: NgForm) {
-    this.submitted = true;
-    if (f.valid) {
-      this.myNoteService.addNewList(this.newListName);
-      this.submitted = false;
-      this.templateForm.resetForm();
-    }
-  }
-
-  async onDelete(id: string) {
-    const alert = await this.alertController.create({
-      header: 'Delete',
-      message: 'Are you sure?',
-      buttons: [{
-        text: 'Cancel',
-        role: 'cancel',
-        cssClass: 'secondary',
-        handler: () => {}
-      }, {
-        text: 'Ok',
-        handler: () => {
-          this.myNoteService.deleteList(id);
-        }
-      }] 
-    });
-
-    await alert.present();    
+  toggleShowAdd() {
+    this.showAdd = !this.showAdd;
   }
 
 }

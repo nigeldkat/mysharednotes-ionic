@@ -3,7 +3,6 @@ import { NgForm } from '@angular/forms';
 
 import { MyNotesItemsService } from './my-notes-items.service';
 
-
 @Component({
     selector: 'my-notes-add-item',
     templateUrl: 'my-notes-add-item.html',
@@ -40,8 +39,5 @@ export class MyNotesAddItemComponent implements OnInit  {
                 addItemsForm.resetForm();
             }
         }
-    }
-
-    
-
+    }  
 }

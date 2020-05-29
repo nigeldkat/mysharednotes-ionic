@@ -1,9 +1,7 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { NgForm } from '@angular/forms';
 
 import { Item } from '../../../interfaces/noteItems.model';
-
 import { MyNotesItemsService } from './my-notes-items.service';
 
 @Component({
@@ -13,12 +11,8 @@ import { MyNotesItemsService } from './my-notes-items.service';
 export class MyNotesItemsPage {
 
     defaultHref = '';
-    newListItem = '';
     noteDesc = '';
-    @ViewChild('addItemsForm', { static: true }) addItemsForm: NgForm;
-    submitted = false;
     showAdd = false;
-    showEdit = false;
     items: Array<[Item]> = [];
     listId: string;
 
@@ -37,25 +31,6 @@ export class MyNotesItemsPage {
 
     toggleShowAdd(){
         this.showAdd = !this.showAdd;
-    }
-    onCreateItem(addItemsForm: NgForm): void {
-        this.submitted = true;
-        if (addItemsForm.valid) {
-            this.itemService.addListItem(this.listId, this.newListItem);
-            this.submitted = false;
-            addItemsForm.resetForm();
-        }
-    }
-
-    onEdit(itemId: string, itemDesc: string){
-        this.showEdit = !this.showEdit;
-        console.log('id : ' + itemId);
-        console.log('Desc : ' + itemDesc);
-
-    }
-
-    onDelete(itemId: string): void {
-        this.itemService.deleteListItem(this.listId, itemId);
     }
 
 }
